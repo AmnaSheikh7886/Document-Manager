@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <!-- Blue background -->
+    <path d="M6 3h7.5L19 8.5V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="#2563EB"/>
+    <path d="M13.5 3v5a.5.5 0 0 0 .5.5H19" fill="#2563EB"/>
+
+    <!-- White strokes -->
+    <g stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h7.5L19 8.5V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
+        <path d="M13.5 3v5a.5.5 0 0 0 .5.5H19"/>
+        <path d="M8.5 12h7"/>
+        <path d="M8.5 15h7"/>
+        <path d="M8.5 9.5h3.5"/>
+    </g>
+</svg>
