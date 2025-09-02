@@ -6,7 +6,7 @@ import 'package:my_file_picker_app/Global/file_table_constants.dart';
 import 'package:my_file_picker_app/Global/folder_table_constants.dart';
 import 'package:uuid/uuid.dart';
 
-import '../Database/database_services.dart';
+import '../Database/SQLite/database_services.dart';
 
 class FileManagerImpl extends FileManager {
   List<FileModel> filesList = [];
