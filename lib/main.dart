@@ -1,4 +1,5 @@
 import 'package:my_file_picker_app/Global/colors.dart';
+import 'package:my_file_picker_app/Global/global_binding.dart';
 import 'package:my_file_picker_app/Global/routes_name.dart';
 import 'package:my_file_picker_app/Home/Dependencies/home_screen_binding.dart';
 import 'package:my_file_picker_app/Home/UI/home_screen.dart';
@@ -26,6 +27,7 @@ class FilePicker extends GetView
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: GlobalBinding(),
       debugShowCheckedModeBanner: false,
       title: "File Picker",
       theme: ThemeData(
