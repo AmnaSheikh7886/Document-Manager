@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:my_file_picker_app/Data/Database/Drift/Services/drift_database_services.dart';
+import 'package:my_file_picker_app/Data/Database/database_services.dart';
 import 'package:my_file_picker_app/Data/Manager/folder_manager.dart';
 import 'package:my_file_picker_app/Data/Model/folder_model.dart';
 import 'package:uuid/uuid.dart';
@@ -9,7 +9,7 @@ class FolderManagerImpl implements FolderManager {
   String get _id => uuid.v4();
   String get _time => DateFormat('dd MMMM yyyy').format(DateTime.now());
 
-  DriftDatabaseServices databaseServices;
+  DatabaseServices databaseServices;
 
   FolderManagerImpl({required this.databaseServices});
 

@@ -7,8 +7,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class DatabaseHelper {
-  DatabaseHelper._();
-  static final DatabaseHelper getInstance = DatabaseHelper._();
+  DatabaseHelper();
+
   Database? database;
   String databaseFile = "document_manager.db";
 

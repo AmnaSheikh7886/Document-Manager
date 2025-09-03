@@ -38,12 +38,22 @@ class HomeScreenController extends GetxController {
     super.onInit();
     _watchFolders();
   }
+  // @override
+  // void onReady() {
+  //   _loadFolders();
+  //   super.onReady();
+  // }
 
   void _watchFolders() {
     manager.watchFolders().listen((List<Folder> newFolders) {
       folders.value = newFolders;
     });
   }
+
+  // void _loadFolders()async
+  // {
+  //   folders.value=await manager.getFolders();
+  // }
 
   void onAddFolder() {
     Get.bottomSheet(
@@ -75,6 +85,7 @@ class HomeScreenController extends GetxController {
       //back to normal
       _normalState();
       Get.back();
+      // _loadFolders();
     }
   }
 

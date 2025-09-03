@@ -8,6 +8,6 @@ class InsideFolderScreenBinding extends Bindings
 {
   @override
   void dependencies() {
-    Get.put(InsideFolderScreenController(manager: FileManagerImpl(databaseServices: DriftDatabaseServicesImpl(database: Get.find<AppDatabase>()))));
+    Get.put(InsideFolderScreenController(manager: FileManagerImpl(databaseServices:DriftDatabaseServicesImpl(database: Get.find<AppDatabase>()))));
   }
 }

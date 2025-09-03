@@ -1,10 +1,10 @@
 import 'package:drift/drift.dart';
-import 'package:my_file_picker_app/Data/Database/Drift/Services/drift_database_services.dart';
 import 'package:my_file_picker_app/Data/Database/Drift/drift_database.dart';
+import 'package:my_file_picker_app/Data/Database/database_services.dart';
 import 'package:my_file_picker_app/Data/Model/file_model.dart';
 import 'package:my_file_picker_app/Data/Model/folder_model.dart';
 
-class DriftDatabaseServicesImpl implements DriftDatabaseServices {
+class DriftDatabaseServicesImpl implements DatabaseServices {
   final database;
 
   DriftDatabaseServicesImpl({required this.database});

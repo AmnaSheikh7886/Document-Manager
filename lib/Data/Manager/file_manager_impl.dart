@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:my_file_picker_app/Data/Database/Drift/Services/drift_database_services.dart';
+import 'package:my_file_picker_app/Data/Database/database_services.dart';
 import 'package:my_file_picker_app/Data/Manager/file_manager.dart';
 import 'package:my_file_picker_app/Data/Model/file_model.dart';
 import 'package:uuid/uuid.dart';
@@ -9,7 +9,7 @@ class FileManagerImpl extends FileManager {
   final Uuid uuid = Uuid();
   String get _id => uuid.v4();
   String get _time => DateFormat('dd MMMM yyyy').format(DateTime.now());
-  DriftDatabaseServices databaseServices;
+  DatabaseServices databaseServices;
 
   FileManagerImpl({required this.databaseServices});
 

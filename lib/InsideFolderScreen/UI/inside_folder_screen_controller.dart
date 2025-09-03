@@ -20,6 +20,16 @@ class InsideFolderScreenController extends GetxController {
     _watchFiles();
   }
 
+  // @override
+  // void onReady() {
+  //   _loadFiles();
+  //   super.onReady();
+  // }
+  // void _loadFiles()async
+  // {
+  //   files.value=await manager.getPermanentFiles(folderId);
+  // }
+
   void _watchFiles()
   {
     manager.watchFiles(folderId).listen((List<FileModel> newFiles){
