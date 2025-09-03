@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,12 +11,10 @@ import 'package:my_file_picker_app/Global/colors.dart';
 import 'package:my_file_picker_app/Global/folder_table_constants.dart';
 import 'package:path/path.dart' as p;
 
-
-class PickImageScreenController extends GetxController
-{
+class PickImageScreenController extends GetxController {
   RxList<FileModel> list = <FileModel>[].obs;
   final args = Get.arguments as Map<String, dynamic>;
-  String get folderId  => args[FolderTableConstants.id];
+  String get folderId => args[FolderTableConstants.id];
   String get folderName => args[FolderTableConstants.name];
   FileManager manager;
   DataPicker picker;
@@ -31,14 +28,20 @@ class PickImageScreenController extends GetxController
   }
 
   void onAdd() async {
-    File? pickedData= await picker.pickData();
+    File? pickedData = await picker.pickData();
     if (pickedData != null) {
       final sizeOfFile = await pickedData.length();
-      final sizeOfFileKB=sizeOfFile/1000;
+      final sizeOfFileKB = sizeOfFile / 1000;
       final String pathOfFile = pickedData.path;
       final String nameOfFile = p.basenameWithoutExtension(pathOfFile);
       final String extension = p.extension(pathOfFile);
-      manager.temporarySaveFile(fileName: nameOfFile, path: pathOfFile, extension: extension, size: sizeOfFileKB.toStringAsFixed(1), parentId: folderId);
+      manager.temporarySaveFile(
+        fileName: nameOfFile,
+        path: pathOfFile,
+        extension: extension,
+        size: sizeOfFileKB.toStringAsFixed(1),
+        parentId: folderId,
+      );
     }
     list.value = manager.uploadFiles();
     list.refresh();
@@ -52,7 +55,7 @@ class PickImageScreenController extends GetxController
 
   void onEdit(int index) {
     TextEditingController name = TextEditingController();
-    name.text=list[index].name;
+    name.text = list[index].name;
     editingBottomSheet(index, name);
   }
 
@@ -74,28 +77,43 @@ class PickImageScreenController extends GetxController
             ),
             SizedBox(height: 12),
 
-            customTextField(name, ()=>name.text="","Type File Name", isValid),
+            customTextField(
+              name,
+              () => name.text = "",
+              "Type File Name",
+              isValid,
+            ),
             SizedBox(height: 12),
 
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 30),
+              padding: const EdgeInsets.symmetric(
+                vertical: 8.0,
+                horizontal: 30,
+              ),
               child: Row(
                 children: [
-                  Expanded(child: customButton("Cancel", onBack, AppColors.cancelButton,AppColors.black)),
+                  Expanded(
+                    child: customButton(
+                      "Cancel",
+                      onBack,
+                      AppColors.cancelButton,
+                      AppColors.black,
+                    ),
+                  ),
                   SizedBox(width: 15),
                   Expanded(
                     child: customButton(
-                        "Save",
-                            (){
-                          onSaveEdit(name, index, isValid);
-                        },
-                        AppColors.primaryBlue,
-                        AppColors.white
+                      "Save",
+                      () {
+                        onSaveEdit(name, index, isValid);
+                      },
+                      AppColors.primaryBlue,
+                      AppColors.white,
                     ),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -115,14 +133,12 @@ class PickImageScreenController extends GetxController
     }
   }
 
-  void onBack()
-  {
+  void onBack() {
     Get.back();
   }
 
-  void onSaveFiles()async
-  {
+  void onSaveFiles() async {
     await manager.permanentlySavefiles(folderId);
-    Get.back(result: true);
+    Get.back();
   }
 }

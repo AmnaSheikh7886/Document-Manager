@@ -4,4 +4,5 @@ abstract class FolderManager
 {
   Future<void> createFolder(String name,int color);
   Future<List<Folder>> getFolders();
+  Stream<List<Folder>> watchFolders();
 }

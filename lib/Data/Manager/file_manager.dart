@@ -8,4 +8,5 @@ abstract class FileManager
   void editFileName(int index,String name);
   Future permanentlySavefiles(String parentId);
   Future<List<FileModel>> getPermanentFiles(String parentId);
+  Stream<List<FileModel>> watchFiles(String parentId);
 }

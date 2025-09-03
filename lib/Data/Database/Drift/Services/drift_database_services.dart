@@ -5,7 +5,9 @@ abstract class DriftDatabaseServices
 {
   Future<void> createFolder(Folder folder);
   Future<List<Folder>> getAllFolders();
+  Stream<List<Folder>>watchAllFolders();
   Future<void> insertMultipleFiles(List<FileModel> files);
   Future<List<FileModel>> getFilesByParentId({required String parentId});
+  Stream<List<FileModel>>watchFilesByParentId({required String parentId});
   Future<void> incrementFilesCount({required int value, required String folderId});
 }

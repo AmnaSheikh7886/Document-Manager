@@ -120,6 +120,6 @@ class PickFileScreenController extends GetxController {
   void onSaveFiles()async
   {
     await manager.permanentlySavefiles(folderId);
-    Get.back(result: true);
+    Get.back();
   }
 }

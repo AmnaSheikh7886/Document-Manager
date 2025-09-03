@@ -107,4 +107,54 @@ class DriftDatabaseServicesImpl implements DriftDatabaseServices {
         ))
         .write(FoldersTableCompanion(filesCount: Value(currentCount + value)));
   }
+
+  @override
+  Stream<List<Folder>> watchAllFolders() {
+
+    final rowsStream = database.select(database.foldersTable).watch();
+
+    //Mapping rows into Folder models
+    return rowsStream.map<List<Folder>>((rows) {
+      final List<FoldersTableData> typedRows = rows.cast<FoldersTableData>();
+
+      return typedRows.map((row) {
+        return Folder(
+          id: row.id,
+          name: row.name,
+          createdAt: row.createdAt,
+          filesCount: row.filesCount,
+          color: row.color,
+        );
+      }).toList();
+    });
+  }
+
+
+  @override
+  Stream<List<FileModel>> watchFilesByParentId({required String parentId}) {
+    final query = database.select(database.filesTable)
+      ..where(
+        (HasResultSet tbl) =>
+            database.filesTable.parentId.equals(parentId) as Expression<bool>,
+      );
+
+    final rowsStream = query.watch();
+
+    // Mapping rows to FileModel list
+    return rowsStream.map<List<FileModel>>((rows) {
+      final List<FilesTableData> typedRows = rows.cast<FilesTableData>();
+
+      return typedRows.map((row) {
+        return FileModel(
+          id: row.id,
+          name: row.name,
+          path: row.path,
+          size: row.size,
+          extension: row.extension,
+          parentId: row.parentId,
+          createdAt: row.createdAt,
+        );
+      }).toList();
+    });
+  }
 }

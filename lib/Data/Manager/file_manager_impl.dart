@@ -4,8 +4,6 @@ import 'package:my_file_picker_app/Data/Manager/file_manager.dart';
 import 'package:my_file_picker_app/Data/Model/file_model.dart';
 import 'package:uuid/uuid.dart';
 
-import '../Database/SQLite/database_services.dart';
-
 class FileManagerImpl extends FileManager {
   List<FileModel> filesList = [];
   final Uuid uuid = Uuid();
@@ -74,5 +72,10 @@ class FileManagerImpl extends FileManager {
     //     );
     // return filesJson.map((json) => FileModelMapper.fromJson(json)).toList();
     return databaseServices.getFilesByParentId(parentId: parentId);
+  }
+  @override
+  Stream<List<FileModel>> watchFiles(String parentId)
+  {
+    return databaseServices.watchFilesByParentId(parentId: parentId);
   }
 }

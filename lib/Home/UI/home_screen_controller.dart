@@ -9,7 +9,7 @@ import 'dart:ui';
 import 'package:my_file_picker_app/Home/Widgets/bottom_sheet_content.dart';
 import '../../Global/folder_table_constants.dart';
 
-class HomeScreenController extends GetxController{
+class HomeScreenController extends GetxController {
   RxBool isValid = true.obs;
   RxBool isSelected = true.obs;
   RxInt selectedIndex = (-1).obs;
@@ -34,13 +34,15 @@ class HomeScreenController extends GetxController{
   HomeScreenController({required this.manager});
 
   @override
-  void onReady() {
+  void onInit() {
     super.onInit();
-    _loadFolders();
+    _watchFolders();
   }
 
-  Future<void> _loadFolders() async {
-    folders.value = await manager.getFolders();
+  void _watchFolders() {
+    manager.watchFolders().listen((List<Folder> newFolders) {
+      folders.value = newFolders;
+    });
   }
 
   void onAddFolder() {
@@ -73,8 +75,6 @@ class HomeScreenController extends GetxController{
       //back to normal
       _normalState();
       Get.back();
-      //getting folders
-      _loadFolders();
     }
   }
 
@@ -105,6 +105,3 @@ class HomeScreenController extends GetxController{
     );
   }
 }
-
-
-

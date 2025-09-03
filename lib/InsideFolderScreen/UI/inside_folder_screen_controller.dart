@@ -13,42 +13,38 @@ class InsideFolderScreenController extends GetxController {
 
 
   InsideFolderScreenController({required this.manager});
+
   @override
   void onInit() {
     super.onInit();
-    _loadFiles();
+    _watchFiles();
   }
 
-  onImportFile() async{
-    final result = await Get.toNamed(
-      Routes.pickFile,
-      arguments: {
-        FolderTableConstants.name: folderName,
-        FolderTableConstants.id: folderId,
-      },
-    );
-    if (result == true) {
-      _loadFiles();
-    }
+  void _watchFiles()
+  {
+    manager.watchFiles(folderId).listen((List<FileModel> newFiles){
+      files.value=newFiles;
+    });
+  }
+  void onImportFile(){
+    Get.toNamed(
+        Routes.pickFile,
+        arguments: {
+          FolderTableConstants.name: folderName,
+          FolderTableConstants.id: folderId,
+        },
+      );
+
   }
 
-  onImportImage() async{
-    final result = await Get.toNamed(
+  void onImportImage(){
+    Get.toNamed(
       Routes.pickImage,
       arguments: {
         FolderTableConstants.name: folderName,
         FolderTableConstants.id: folderId,
       },
     );
-    if (result == true) {
-      _loadFiles();
-    }
-  }
-
-
-  void _loadFiles()async
-  {
-    files.value=await manager.getPermanentFiles(folderId);
   }
 
   void onBack()
