@@ -1,9 +1,7 @@
 import 'package:intl/intl.dart';
+import 'package:my_file_picker_app/Data/Database/Drift/Services/drift_database_services.dart';
 import 'package:my_file_picker_app/Data/Manager/file_manager.dart';
 import 'package:my_file_picker_app/Data/Model/file_model.dart';
-import 'package:my_file_picker_app/Data/Model/file_model_mapper.dart';
-import 'package:my_file_picker_app/Global/file_table_constants.dart';
-import 'package:my_file_picker_app/Global/folder_table_constants.dart';
 import 'package:uuid/uuid.dart';
 
 import '../Database/SQLite/database_services.dart';
@@ -13,7 +11,7 @@ class FileManagerImpl extends FileManager {
   final Uuid uuid = Uuid();
   String get _id => uuid.v4();
   String get _time => DateFormat('dd MMMM yyyy').format(DateTime.now());
-  DatabaseServices databaseServices;
+  DriftDatabaseServices databaseServices;
 
   FileManagerImpl({required this.databaseServices});
 
@@ -56,33 +54,25 @@ class FileManagerImpl extends FileManager {
 
   @override
   Future permanentlySavefiles(String parentId) async {
-    List<Map<String, dynamic>> filesJson = filesList
-        .map((file) => FileModelMapper.toJson(file))
-        .toList();
+    // List<Map<String, dynamic>> filesJson = filesList
+    //     .map((file) => FileModelMapper.toJson(file))
+    //     .toList();
     //Saving in Database
-    await databaseServices.insertMultipleRows(
-      FileTableConstants.tableName,
-      filesJson,
-    );
+    await databaseServices.insertMultipleFiles(filesList);
     //Incrementing value
-    await databaseServices.incrementColumnValue(
-      tableName: FolderTableConstants.tableName,
-      columnName: FolderTableConstants.filesCount,
-      incrementValue: filesList.length,
-      whereColumn: FolderTableConstants.id,
-      whereValue: parentId,
-    );
+    await databaseServices.incrementFilesCount(value: filesList.length, folderId: parentId);
     filesList.clear();
   }
 
   @override
   Future<List<FileModel>> getPermanentFiles(String parentId) async {
-    List<Map<String, dynamic>> filesJson = await databaseServices
-        .getDataByColumnValue(
-          tableName: FileTableConstants.tableName,
-          columnName: FileTableConstants.parentId,
-          columnValue: parentId,
-        );
-    return filesJson.map((json) => FileModelMapper.fromJson(json)).toList();
+    // List<Map<String, dynamic>> filesJson = await databaseServices
+    //     .getDataByColumnValue(
+    //       tableName: FileTableConstants.tableName,
+    //       columnName: FileTableConstants.parentId,
+    //       columnValue: parentId,
+    //     );
+    // return filesJson.map((json) => FileModelMapper.fromJson(json)).toList();
+    return databaseServices.getFilesByParentId(parentId: parentId);
   }
 }
