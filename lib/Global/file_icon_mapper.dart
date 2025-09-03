@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_file_picker_app/Global/icon.dart';
 
 class FileIcon {
   static final Map<String, IconData> fileExtensionIcons = {

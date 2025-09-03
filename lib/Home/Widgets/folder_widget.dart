@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:my_file_picker_app/Global/colors.dart';
 import 'package:my_file_picker_app/Global/icon.dart';
-import 'package:my_file_picker_app/Global/routes_name.dart';
 import 'package:my_file_picker_app/Global/screen_size.dart';
 
 Widget folder({

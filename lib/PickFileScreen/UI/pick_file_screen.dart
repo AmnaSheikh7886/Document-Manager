@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_file_picker_app/CustomWidgets/custom_box_shadow.dart';
 import 'package:my_file_picker_app/Global/colors.dart';

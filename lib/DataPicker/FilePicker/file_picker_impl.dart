@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:my_file_picker_app/DataPicker/data_picker.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:path/path.dart' as p;
 
 class FilePickerImplementation implements DataPicker {
 
