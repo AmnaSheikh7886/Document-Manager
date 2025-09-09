@@ -3,10 +3,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:label="file_picker"
+        android:label="DocNest"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
+            android:label="DocNest"
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
